@@ -142,7 +142,6 @@ class Sudoku:
             return assignment
 
         var = self.select_unassigned_var(assignment)
-        #print(f"Trying to assign value to variable at {var.pos} with domain {var.domain}")
 
         if var is not None:
             original_domain = var.domain.copy()
@@ -152,7 +151,6 @@ class Sudoku:
                 self.exploring += 1
 
                 if self.consistent(new_assignment):
-                    #print(f"Assigned {value} to {var.pos}, proceeding with backtracking.")
                     self.consistency_mid(var, value)
                     result = self.backtrack(new_assignment)
 
@@ -160,7 +158,6 @@ class Sudoku:
                         return result
 
                 self.consistency_end(var, value)
-                #print(f"Backtracking from value {value} at {var.pos}")
 
         return None
 
@@ -202,7 +199,5 @@ class Sudoku:
         self.assignment = self.backtrack(self.assignment)
 
         self.solution = self.assignment is not None
-
-        #print(self.exploring)
 
         return self.solution
